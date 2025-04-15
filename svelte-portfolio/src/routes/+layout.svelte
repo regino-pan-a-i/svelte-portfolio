@@ -4,5 +4,16 @@
 
 	let { children } = $props();
 </script>
-<NavBar/>
-{@render children()}
+
+<div>
+	<NavBar/>
+
+	{@render children()}
+</div>
+
+<style>
+div{
+	margin-left: 24%;
+}
+
+</style>
