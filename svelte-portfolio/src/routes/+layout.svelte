@@ -13,7 +13,7 @@
 
 <style>
 div{
-	margin-left: 24%;
+	margin-left: 14%;
 }
 
 </style>
