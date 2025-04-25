@@ -1,7 +1,12 @@
 <script>
-    import Glide from '@glidejs/glide'
-
-    var glide01 = new Glide('.glide-01', {
+    import { onMount } from 'svelte';
+	import ProjectCard from './ProjectCard.svelte';
+    let glide;
+  
+    onMount(async () => {
+      const Glide = (await import('@glidejs/glide')).default;
+  
+      glide = new Glide('.glide-01', {
         type: 'carousel',
         focusAt: 'center',
         perView: 3,
@@ -9,31 +14,55 @@
         animationDuration: 700,
         gap: 24,
         classes: {
-            activeNav: '[&>*]:bg-slate-700',
+          activeNav: '[&>*]:bg-slate-700',
         },
         breakpoints: {
-            1024: {
-                perView: 2
-            },
-            640: {
-                perView: 1
-            }
+          1024: {
+            perView: 2
+          },
+          640: {
+            perView: 1
+          }
         },
+      });
+  
+      glide.mount();
     });
-
-    glide01.mount();
+    let projects = [
+        {
+            "title": "MovieMapper",
+            "description": "Developed an IOS app using Swift and REST APIs to provide nearby theater listings, movie details, and direct ticket reservation links, achieving a 4/5 user satisfaction rating by designing a user-friendly interface.",
+            "technologies": ["IOS", "Swift", "Rest APIs"]
+        },
+        {
+            "title": "Broken Links Web Scraper",
+            "description": "Directed the refactoring and documentation of a Selenium-based scraper for a client, improving functionality by implementing OOP principles and multithreading, resulting in a 500% performance boost as measured by runtime efficiency.",
+            "technologies": ["Selenium", "Multihtreading", "Python"]
+        },
+        {
+            "title": "Better Reader",
+            "description": "Directed the refactoring and documentation of a Selenium-based scraper for a client, improving functionality by implementing OOP principles and multithreading, resulting in a 500% performance boost as measured by runtime efficiency.",
+            "technologies": ["..."]
+        },
+        
+    ]
 </script>
+
+
+<h2>Quick look at projects</h2>
 
 <div class="relative w-full glide-01">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script> -->
     <!-- Slides -->
     <div class="overflow-hidden" data-glide-el="track">
         <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
-            <li><img src="https://Tailwindmix.b-cdn.net/carousel/carousel-image-01.jpg" class="w-full max-w-full max-h-full m-auto" /></li>
-            <li><img src="https://Tailwindmix.b-cdn.net/carousel/carousel-image-02.jpg" class="w-full max-w-full max-h-full m-auto" /></li>
-            <li><img src="https://Tailwindmix.b-cdn.net/carousel/carousel-image-03.jpg" class="w-full max-w-full max-h-full m-auto" /></li>
-            <li><img src="https://Tailwindmix.b-cdn.net/carousel/carousel-image-04.jpg" class="w-full max-w-full max-h-full m-auto" /></li>
-            <li><img src="https://Tailwindmix.b-cdn.net/carousel/carousel-image-05.jpg" class="w-full max-w-full max-h-full m-auto" /></li>
+            
+            {#each projects as project }
+            <li class="w-full max-w-full max-h-full m-auto">
+
+                <ProjectCard project={project}/>
+            </li>
+            {/each}
         </ul>
     </div>
     <!-- Controls -->
