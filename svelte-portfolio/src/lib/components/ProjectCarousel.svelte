@@ -49,7 +49,7 @@
 </script>
 
 
-<h2>Quick look at projects</h2>
+<h2 class="mb-4 text-1xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white" >Quick look at projects</h2>
 
 <div class="relative w-full glide-01">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/glide.js"></script> -->
