@@ -31,28 +31,7 @@
     });
     let projectsObj = getProjectList(); // returns an object of objects
     let projects = Object.values(projectsObj);
-    // let projects = [
-    //     {
-    //         "title": "MovieMapper",
-    //         "description": "Developed an IOS app using Swift and REST APIs to provide nearby theater listings, movie details, and direct ticket reservation links, achieving a 4/5 user satisfaction rating by designing a user-friendly interface.",
-    //         "technologies": ["IOS", "Swift", "Rest APIs"],
-    //         "url": "/projects/project?name=MovieMapper"
-    //     },
-    //     {
-    //         "title": "Broken Links Web Scraper",
-    //         "description": "Directed the refactoring and documentation of a Selenium-based scraper for a client, improving functionality by implementing OOP principles and multithreading, resulting in a 500% performance boost as measured by runtime efficiency.",
-    //         "technologies": ["Selenium", "Multihtreading", "Python"],
-    //         "url": "/projects/project?name=Scraper"
-
-    //     },
-    //     {
-    //         "title": "Better Reader",
-    //         "description": "Directed the refactoring and documentation of a Selenium-based scraper for a client, improving functionality by implementing OOP principles and multithreading, resulting in a 500% performance boost as measured by runtime efficiency.",
-    //         "technologies": ["..."],
-    //         "url": "/projects/project?name=BetterReader"
-    //     }
-    // ]
-    console.log(projects);
+  
 </script>
 
 
