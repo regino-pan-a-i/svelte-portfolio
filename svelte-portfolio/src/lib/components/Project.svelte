@@ -1,5 +1,9 @@
 <script>
-    let {project} = $props()
+    import { getProjectList } from "../../resources/projectList.mjs";
+    let params = new URLSearchParams(window.location.search);
+    let projectName = params.get('name');
+    let project = getProjectList(projectName);
+    // let {project} = $props()
 
 </script>
 

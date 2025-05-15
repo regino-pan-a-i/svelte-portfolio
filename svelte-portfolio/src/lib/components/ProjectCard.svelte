@@ -7,6 +7,7 @@ let {project} = $props()
 
 
 <div class="overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200">
+  <a href={project.url}>
     <!-- Image -->
     <figure class="relative">
       <img src="https://picsum.photos/id/100/800/600" alt="card image" class="aspect-video w-full" />
@@ -14,4 +15,6 @@ let {project} = $props()
         <h3 class="text-lg font-medium ">{project.title}</h3>
       </figcaption>
     </figure>
+  </a>
+
 </div>
