@@ -1,12 +1,13 @@
 <script>
     import { onMount } from 'svelte';
-	import ProjectCard from './ProjectCard.svelte';
+    import ProjectCard from './ProjectCard.svelte';
     import {getProjectList} from '../../resources/projectList.mjs'
     let glide;
-  
+    let currentIndex = 0;
+
     onMount(async () => {
       const Glide = (await import('@glidejs/glide')).default;
-  
+
       glide = new Glide('.glide-01', {
         type: 'carousel',
         focusAt: 'center',
@@ -26,12 +27,16 @@
           }
         },
       });
-  
+
+      glide.on('run', () => {
+        currentIndex = glide.index;
+      });
+
       glide.mount();
     });
     let projectsObj = getProjectList(); // returns an object of objects
     let projects = Object.values(projectsObj);
-  
+
 </script>
 
 
@@ -50,6 +55,16 @@
             </li>
             {/each}
         </ul>
+    </div>
+    <!-- Bullets -->
+    <div class="absolute left-0 flex items-center justify-center w-full h-0 px-4 bottom-2" data-glide-el="controls[nav]">
+        {#each projects as _, i}
+            <button
+                class="inline-flex items-center justify-center w-3 h-3 transition duration-300 border rounded-full lg:w-4 lg:h-4 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20 {currentIndex === i ? 'bg-white border-white' : ''}"
+                data-glide-dir="={i}"
+                aria-label={`slide ${i + 1}`}
+            ></button>
+        {/each}
     </div>
     <!-- Controls -->
     <div class="absolute left-0 flex items-center justify-between w-full h-0 px-4 top-1/2 " data-glide-el="controls">
