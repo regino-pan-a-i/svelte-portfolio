@@ -49,7 +49,7 @@
         <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
             
             {#each projects as project }
-            <li class="w-full max-w-full max-h-3/4 m-auto items-start">
+            <li class="w-full max-w-full max-h-3/4 mr-auto ml-auto mb-8 items-start">
 
                 <ProjectCard project={project}/>
             </li>
