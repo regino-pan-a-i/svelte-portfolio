@@ -49,7 +49,7 @@
         <ul class="relative w-full overflow-hidden p-0 whitespace-no-wrap flex flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform]">
             
             {#each projects as project }
-            <li class="w-full max-w-full max-h-full m-auto">
+            <li class="w-full max-w-full max-h-3/4 m-auto items-start">
 
                 <ProjectCard project={project}/>
             </li>
@@ -57,10 +57,10 @@
         </ul>
     </div>
     <!-- Bullets -->
-    <div class="absolute left-0 flex items-center justify-center w-full h-0 px-4 bottom-2" data-glide-el="controls[nav]">
+    <div class="absolute left-0 flex items-baseline justify-center w-full h-0 px-4 bottom-2" data-glide-el="controls[nav]">
         {#each projects as _, i}
             <button
-                class="inline-flex items-center justify-center w-3 h-3 transition duration-300 border rounded-full lg:w-4 lg:h-4 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-white/20 {currentIndex === i ? 'bg-white border-white' : ''}"
+                class="inline-flex items-center justify-center w-3 h-3 transition duration-300 border rounded-full lg:w-4 lg:h-4 text-slate-700 border-slate-700 hover:text-slate-900 hover:border-slate-900 focus-visible:outline-none bg-black/80 {currentIndex === i ? 'bg-white/20' : ''}"
                 data-glide-dir="={i}"
                 aria-label={`slide ${i + 1}`}
             ></button>
