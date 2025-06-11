@@ -7,13 +7,15 @@
 
 <div>
 	<NavBar/>
-
-	{@render children()}
+	<div class="ml-40">
+		
+		{@render children()}
+	</div>
 </div>
 
 <style>
-div{
+/* div{
 	margin-left: 14%;
-}
+} */
 
 </style>
