@@ -14,8 +14,6 @@
 </div>
 
 <style>
-/* div{
-	margin-left: 14%;
-} */
+
 
 </style>
