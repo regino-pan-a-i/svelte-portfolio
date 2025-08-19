@@ -7,7 +7,7 @@
 
 <div>
 	<NavBar/>
-	<div class="ml-60">
+	<div class="ml-50 m-10">
 		
 		{@render children()}
 	</div>
