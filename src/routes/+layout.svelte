@@ -5,9 +5,9 @@
 	let { children } = $props();
 </script>
 
-<div>
+<div class="">
 	<NavBar/>
-	<div class="ml-50 m-10">
+	<div class="md:ml-50 m-10">
 		
 		{@render children()}
 	</div>
