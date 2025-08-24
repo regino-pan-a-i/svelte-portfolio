@@ -7,9 +7,11 @@
 
 <div class="">
 	<NavBar/>
-	<div class="md:ml-50 m-10">
+  	<div class="h-screen overflow-auto px-4 md:ml-64">
+    	<div class="rounded-lg border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
+			{@render children()}
 		
-		{@render children()}
+		</div>
 	</div>
 </div>
 

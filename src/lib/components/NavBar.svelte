@@ -1,59 +1,85 @@
-<!-- <script>
-    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from "flowbite-svelte";
-    
-    const optionClass = "flex justify-center w-full block items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700 group"
-    
-    let isNavOpen = false
 
+
+<script lang="ts">
+  import { Sidebar, SidebarGroup, SidebarItem, SidebarButton, uiHelpers } from "flowbite-svelte";
+  import { CodeOutline, FileLinesOutline, ProfileCardOutline, UserSolid, HomeOutline } from "flowbite-svelte-icons";
+  import { page } from "$app/state";
+  let activeUrl = $state(page.url.pathname);
+  const sidebarUi = uiHelpers();
+  // Initialize sidebar as open on desktop, closed on mobile
+  let isDemoOpen = $state(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
+  const closeDemoSidebar = sidebarUi.close;
+  
+  $effect(() => {
+    // Only sync with sidebarUi if it's been explicitly toggled
+    if (sidebarUi.isOpen !== undefined) {
+      isDemoOpen = sidebarUi.isOpen;
+    }
+    activeUrl = page.url.pathname;
+    
+    // Handle responsive behavior
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        if (window.innerWidth >= 768) {
+          // Desktop: ensure sidebar is open
+          isDemoOpen = true;
+          sidebarUi.open();
+        } else {
+          // Mobile: close sidebar by default
+          isDemoOpen = false;
+          sidebarUi.close();
+        }
+      };
+      
+      window.addEventListener('resize', handleResize);
+      // Set initial state
+    //   handleResize();
+      
+    //   return () => {
+    //     window.removeEventListener('resize', handleResize);
+    //   };
+    }
+  });
+  const spanClass = "flex-1 ms-3 whitespace-nowrap";
+  const activeClass = "flex items-center p-2 text-base font-normal text-white bg-primary-600 dark:bg-primary-700 rounded-lg dark:text-white hover:bg-primary-800 dark:hover:bg-primary-800";
+  const nonActiveClass = "flex items-center p-2 text-base font-normal text-green-900 rounded-lg dark:text-white hover:bg-green-100 dark:hover:bg-green-700";
+  const iconClass = "h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 </script>
 
+<SidebarButton onclick={sidebarUi.toggle} class="mb-2 md:hidden" />
+<div class="relative">
 
-<aside id="default-sidebar" class="fixed top-0 md:left-0 z-40 w-screen md:w-40 h-40 md:h-screen" aria-label="Sidebar">
-    
-    <div class="md:h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+    <Sidebar {activeUrl} backdrop={false} isOpen={isDemoOpen} closeSidebar={closeDemoSidebar} params={{ x: -50, duration: 50 }} classes={{ nonactive: nonActiveClass, active: activeClass }} position="absolute" class="z-50 h-screen">
 
-        <a href="/" class={optionClass}>HOME </a>
+        <SidebarGroup>
+            <SidebarItem label="Home" {spanClass} href="/">
+                {#snippet icon()}
+                    <HomeOutline class={iconClass} />
+                {/snippet}
+            </SidebarItem>
+            <SidebarItem label="About" {spanClass} href="/about">
+                {#snippet icon()}
+                    <UserSolid  class={iconClass} />
+                {/snippet}
+            </SidebarItem>
+            <SidebarItem label="Projects" {spanClass} href="/projects">
+                {#snippet icon()}
+                <CodeOutline class={iconClass} />
+                {/snippet}
+            </SidebarItem>
+            <SidebarItem label="Experience" {spanClass} href="/experience">
+                {#snippet icon()}
+                <FileLinesOutline class={iconClass} />
+                {/snippet}
+            </SidebarItem>
+            <SidebarItem label="Contact" href="#contact">
+                {#snippet icon()}
+                <ProfileCardOutline class={iconClass} />
+                {/snippet}
+            </SidebarItem>
+        </SidebarGroup>
+    </Sidebar>
 
-        <ul class="flex flex-col w-full mt-5 md:mt-0 h-full font-medium align-middle justify-center gap-5.5 md:gap-10">
-            <li class={optionClass}>
-                <a href="/about" >ABOUT </a>
-            </li>
-            <li class={optionClass}>
-                <a href="/projects" >PROJECTS</a>
-            </li>
-            <li class={optionClass}>
-                <a href="/experience" >EXPERIENCE</a>
-            </li>
-            <li class={optionClass}>
-                <a href="#contact" >CONTACT</a>
-            </li>
-        </ul>
-    </div>
-</aside>
-
-<style>
-
-</style> -->
+</div>
 
 
-<script>
-    import { page } from "$app/state";
-    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from "flowbite-svelte";
-    let activeUrl = $derived(page.url.pathname);
-    const optionClass = "flex justify-center w-full block items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700 group"
-</script>
-
-<Navbar class="fixed top-0 md:left-0 z-40 w-screen md:w-40 h-40 md:h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-    <NavBrand href="/" class={optionClass}>
-        HOME
-    </NavBrand>
-    
-    <NavHamburger />
-    
-    <NavUl {activeUrl} class="flex flex-col w-full h-full mt-5 md:mt-0 font-medium align-middle justify-center gap-5.5 md:gap-10">
-        <NavLi href="/about" class={optionClass}>ABOUT</NavLi>
-        <NavLi href="/projects" class={optionClass}>PROJECTS</NavLi>
-        <NavLi href="/experience" class={optionClass}>EXPERIENCE</NavLi>
-        <NavLi href="#contact" class={optionClass}>CONTACT</NavLi>
-    </NavUl>
-</Navbar>
